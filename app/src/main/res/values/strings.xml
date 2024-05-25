@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AnekaStoreMobile</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string name="name_product">Indomie Goreng</string>
+    <string name="price">Rp. 110.000</string>
+</resources>
