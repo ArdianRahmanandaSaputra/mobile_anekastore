@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.body.LoginBody
 import com.example.anekastoremobile.data.remote.response.LoginResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
@@ -20,7 +19,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
 
         val userPreferences = UserPreferences(this@MainActivity)
         val token = userPreferences.getToken()

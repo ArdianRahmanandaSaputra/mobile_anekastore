@@ -3,15 +3,10 @@ package com.example.anekastoremobile.ui
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.body.RegisterBody
 import com.example.anekastoremobile.data.remote.response.RegisterResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
-import com.example.anekastoremobile.data.remote.retrofit.ApiService
 import com.example.anekastoremobile.databinding.ActivityRegisterBinding
 import retrofit2.Call
 import retrofit2.Callback
@@ -23,7 +18,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar?.hide()
 
         binding.button.setOnClickListener {
             register()
