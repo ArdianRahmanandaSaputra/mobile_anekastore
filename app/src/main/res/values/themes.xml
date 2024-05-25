@@ -1,9 +1,13 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.AnekaStoreMobile" parent="Theme.Material3.DayNight">
+    <style name="Base.Theme.AnekaStoreMobile" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
-         <item name="colorPrimary">@color/primaryGreen</item>
+        <item name="colorPrimary">@color/primaryGreen</item>
     </style>
 
     <style name="Theme.AnekaStoreMobile" parent="Base.Theme.AnekaStoreMobile" />
+
+    <style name="ActionBar" parent="Theme.Material3.DayNight">
+        <item name="colorPrimary">@color/primaryGreen</item>
+    </style>
 </resources>
