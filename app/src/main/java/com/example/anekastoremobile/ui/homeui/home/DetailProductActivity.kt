@@ -1,13 +1,9 @@
 package com.example.anekastoremobile.ui.homeui.home
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
-import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.response.Product
 import com.example.anekastoremobile.databinding.ActivityDetailProductBinding
 
@@ -18,15 +14,18 @@ class DetailProductActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding = ActivityDetailProductBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        /*ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }*/
-        supportActionBar?.hide()
+
+        val toolbar = binding.toolbar
+        setSupportActionBar(toolbar)
+
+        val actionBar = supportActionBar
+        if (actionBar != null) {
+            actionBar.displayOptions = ActionBar.DISPLAY_SHOW_CUSTOM
+            actionBar.setDisplayShowCustomEnabled(true)
+            actionBar.setDisplayHomeAsUpEnabled(true)
+        }
 
         val i = intent
         @Suppress("DEPRECATION")
@@ -37,5 +36,6 @@ class DetailProductActivity : AppCompatActivity() {
             .load("http://storeaneka.my.id/uploads/product/${product.photo}")
             .into(binding.ivProduct)
         binding.tvPrice.text = product.price
+        binding.tvNameProduct.text = product.name
     }
 }
