@@ -38,13 +38,16 @@
     <ImageView
         android:id="@+id/iv_product"
         android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:layout_margin="20dp"
+        android:layout_height="250dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/indomie_goreng"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBar" />
+        app:layout_constraintTop_toBottomOf="@id/appBar"
+        tools:src="@drawable/indomie_goreng" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -60,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#02A325"
+            android:textSize="18sp"
             android:textStyle="bold"
             tools:text="@string/price" />
 
@@ -72,6 +76,159 @@
             android:textSize="20sp"
             android:textStyle="bold"
             tools:text="@string/name_product" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/description_product"
+            android:textSize="14sp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/no_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_register"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/space1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/no_register" />
+
+            <TextView
+                android:id="@+id/value_no_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/space1"
+                app:layout_constraintTop_toTopOf="@id/no_register"
+                tools:text="@string/value_no_register" />
+
+            <!-- 2 -->
+            <TextView
+                android:id="@+id/brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/brand"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/no_register" />
+
+            <TextView
+                android:id="@+id/space2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/brand" />
+
+            <TextView
+                android:id="@+id/value_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/space2"
+                app:layout_constraintTop_toTopOf="@id/brand"
+                tools:text="@string/name_product" />
+
+            <!-- 3 -->
+            <TextView
+                android:id="@+id/expired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/date_expired"
+                android:textSize="13sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/brand" />
+
+            <TextView
+                android:id="@+id/space3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/expired" />
+
+            <TextView
+                android:id="@+id/value_expired"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/space3"
+                app:layout_constraintTop_toTopOf="@id/expired"
+                tools:text="@string/value_date_expired" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/value_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            tools:text="@string/value_desc" />
+
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_addto_cart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/round_btn_green"
+        android:text="@string/add_to_cart"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/primaryGreen"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
