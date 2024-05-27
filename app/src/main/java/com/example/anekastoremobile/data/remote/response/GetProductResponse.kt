@@ -9,7 +9,7 @@ data class GetProductResponse(
 
     @field:SerializedName("product")
     val product: MutableList<Product>? = null,
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class Product(
@@ -47,12 +47,15 @@ data class Product(
     @field:SerializedName("category_name")
     val categoryName: String? = null,
 
+    @field:SerializedName("discounts")
+    val discounts: MutableList<Discount>? = mutableListOf(),
+
     @field:SerializedName("terjual")
     val sold: Int? = null,
 
     @field:SerializedName("category")
     val category: Category? = null,
-): Parcelable
+) : Parcelable
 
 @Parcelize
 data class Category(
@@ -71,4 +74,29 @@ data class Category(
 
     @field:SerializedName("updated_at")
     val updatedAt: String? = null,
-): Parcelable
+) : Parcelable
+
+@Parcelize
+data class Discount(
+
+    @field:SerializedName("id")
+    val id: Int? = null,
+
+    @field:SerializedName("product_id")
+    val productId: String? = null,
+
+    @field:SerializedName("constraint")
+    val constraint: String? = null,
+
+    @field:SerializedName("discounts")
+    val discounts: String? = null,
+
+    @field:SerializedName("description")
+    val description: String? = null,
+
+    @field:SerializedName("created_at")
+    val createdAt: String? = null,
+
+    @field:SerializedName("updated_at")
+    val updatedAt: String? = null,
+) : Parcelable
