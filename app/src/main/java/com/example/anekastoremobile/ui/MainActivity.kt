@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val loginBody = LoginBody(pass, email)
-        val client =  ApiConfig.getService().login(loginBody)
+        val client =  ApiConfig.getService(applicationContext).login(loginBody)
         client.enqueue(object: Callback<LoginResponse>{
             override fun onResponse(p0: Call<LoginResponse>, response: Response<LoginResponse>) {
               if(response.isSuccessful){

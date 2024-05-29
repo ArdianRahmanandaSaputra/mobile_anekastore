@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
        val body = RegisterBody(password,nama, email)
-        val client = ApiConfig.getService().register(body)
+        val client = ApiConfig.getService(applicationContext).register(body)
         client.enqueue(object: Callback<RegisterResponse>{
             override fun onResponse(p0: Call<RegisterResponse>, response: Response<RegisterResponse>) {
                 if (response.isSuccessful){

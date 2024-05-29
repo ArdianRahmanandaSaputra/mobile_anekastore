@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
-        val client = ApiConfig.getService().getProduct()
+        val client = ApiConfig.getService(requireContext()).getProduct()
         client.enqueue(object : Callback<GetProductResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
