@@ -17,6 +17,6 @@
     <string name="packet">Paket</string>
     <string name="value_packet">Pembelian Minimum 5 Dus</string>
     <string name="value_desc">Pembelian Minimum sebanyak 1 dus, 1 dus berisikan 40 pcs.</string>
-    <string name="cart">Cart</string>
+    <string name="cart">Keranjang</string>
     <string name="add_to_cart">Masukkan Keranjang</string>
 </resources>
