@@ -14,6 +14,7 @@ import com.example.anekastoremobile.data.remote.response.Product
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.ActivityDetailProductBinding
+import com.example.anekastoremobile.formatToRupiah
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,14 +61,22 @@ class DetailProductActivity : AppCompatActivity() {
                     Glide.with(applicationContext)
                         .load("http://storeaneka.my.id/uploads/product/${responseBody.photo}")
                         .into(binding.ivProduct)
-                    binding.tvPrice.text = buildString {
-                        append("Rp. ")
-                        append(responseBody.price)
-                    }
+                    binding.tvPrice.text = formatToRupiah(responseBody.price?.toDouble() ?: 0.0)
                     binding.tvNameProduct.text = responseBody.name
-                    binding.valueNoRegister.text = responseBody.name
-                    binding.valueBrand.text = responseBody.categoryName
-                    binding.valueExpired.text = responseBody.name
+                    binding.valueNoRegister.text = responseBody.id.toString()
+                    binding.valueCategory.text = responseBody.categoryName
+                    if ((responseBody.discounts?.size ?: 0) > 0) {
+                        val descriptions = StringBuilder()
+                        for (i in 0 until (responseBody.discounts?.size ?: 0)) {
+                            descriptions.append(responseBody.discounts?.get(i)?.description ?: "")
+                            if (i != (responseBody.discounts?.size ?: 0) - 1) {
+                                descriptions.append("\n")
+                            }
+                        }
+                        binding.valuePacket.text = descriptions.toString()
+                    } else {
+                        binding.valuePacket.text = "-"
+                    }
                     binding.valueDesc.text = responseBody.description
                 }
             }
