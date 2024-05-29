@@ -10,11 +10,12 @@
     <string name="price">Rp. 110.000</string>
 
     <string name="description_product">Deskripsi Produk</string>
-    <string name="no_register">No. Registasi</string>
+    <string name="no_register">No. Registrasi</string>
     <string name="value_no_register">MD-231509014002</string>
-    <string name="brand">Merk</string>
-    <string name="date_expired">Tgl Kadaluarsa</string>
-    <string name="value_date_expired">25 Agustus 2024</string>
+    <string name="category">Kategori</string>
+    <string name="value_category">Bahan Pokok</string>
+    <string name="packet">Paket</string>
+    <string name="value_packet">Pembelian Minimum 5 Dus</string>
     <string name="value_desc">Pembelian Minimum sebanyak 1 dus, 1 dus berisikan 40 pcs.</string>
     <string name="cart">Cart</string>
     <string name="add_to_cart">Masukkan Keranjang</string>
