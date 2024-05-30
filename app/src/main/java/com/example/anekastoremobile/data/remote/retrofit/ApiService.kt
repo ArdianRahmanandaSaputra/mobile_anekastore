@@ -2,6 +2,7 @@ package com.example.anekastoremobile.data.remote.retrofit
 
 import com.example.anekastoremobile.data.remote.body.LoginBody
 import com.example.anekastoremobile.data.remote.body.RegisterBody
+import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
 import com.example.anekastoremobile.data.remote.response.LoginResponse
 import com.example.anekastoremobile.data.remote.response.MessageResponse
@@ -37,5 +38,8 @@ interface ApiService {
         @Field("product_id") productId: Int,
         @Field("amount") amount: Int,
     ): Call<MessageResponse>
+
+    @POST("get-cart")
+    fun getCart(): Call<GetCartResponse>
 
 }
