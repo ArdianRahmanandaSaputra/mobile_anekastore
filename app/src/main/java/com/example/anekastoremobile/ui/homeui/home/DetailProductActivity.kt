@@ -78,7 +78,7 @@ class DetailProductActivity : AppCompatActivity() {
                             }
                         }
                         binding.valuePacket.text = descriptions.toString()
-                        binding.btnAddtoCart.setOnClickListener { addCart(2, responseBody.id ?: 0) }
+                        binding.btnAddtoCart.setOnClickListener { addCart(responseBody.id ?: 0) }
                     } else {
                         binding.valuePacket.text = "-"
                     }
@@ -93,9 +93,9 @@ class DetailProductActivity : AppCompatActivity() {
         })
     }
 
-    private fun addCart(userId: Int, productId: Int) {
+    private fun addCart(productId: Int) {
         showLoading(true)
-        val client = ApiConfig.getService(applicationContext).addCart(userId, productId, 1)
+        val client = ApiConfig.getService(applicationContext).addCart(productId, 1)
         client.enqueue(object : Callback<MessageResponse> {
             override fun onResponse(
                 p0: Call<MessageResponse>,
