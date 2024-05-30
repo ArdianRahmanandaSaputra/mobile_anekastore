@@ -34,7 +34,6 @@ interface ApiService {
     @FormUrlEncoded
     @POST("add-cart")
     fun addCart(
-        @Field("user_id") userId: Int,
         @Field("product_id") productId: Int,
         @Field("amount") amount: Int,
     ): Call<MessageResponse>
