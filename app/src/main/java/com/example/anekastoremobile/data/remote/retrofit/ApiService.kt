@@ -41,4 +41,22 @@ interface ApiService {
     @POST("get-cart")
     fun getCart(): Call<GetCartResponse>
 
+    @FormUrlEncoded
+    @POST("delete-item-cart")
+    fun deleteItemCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
+
+    @FormUrlEncoded
+    @POST("add-item-cart")
+    fun addItemCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
+
+    @FormUrlEncoded
+    @POST("delete-cart")
+    fun deleteCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
+
 }
