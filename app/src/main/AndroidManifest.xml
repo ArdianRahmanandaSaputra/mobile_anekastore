@@ -21,8 +21,10 @@
             android:name=".ui.HomeActivity"
             android:label="@string/title_activity_home"
             android:theme="@style/ActionBar" />
+        <activity android:name=".ui.MainActivity" />
+        <activity android:name=".ui.RegisterActivity" />
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,9 +32,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.RegisterActivity"
-            android:exported="true" />
     </application>
 
 </manifest>
