@@ -11,6 +11,7 @@ import com.example.anekastoremobile.data.remote.response.Cart
 import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.ActivityCartBinding
+import com.example.anekastoremobile.formatToRupiah
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -42,7 +43,7 @@ class CartActivity : AppCompatActivity() {
         getData()
     }
 
-    private fun getData() {
+    fun getData() {
         showLoading(true)
         val client = ApiConfig.getService(applicationContext).getCart()
         client.enqueue(object : Callback<GetCartResponse> {
@@ -51,8 +52,27 @@ class CartActivity : AppCompatActivity() {
                 val responseBody = p1.body()
                 if (p1.isSuccessful && responseBody != null) {
                     dataList = responseBody.cart ?: mutableListOf()
-                    adapter = CartAdapter(applicationContext, dataList)
+                    adapter = CartAdapter(applicationContext, dataList, this@CartActivity)
                     binding.rvCart.adapter = adapter
+
+                    var amount = 0
+                    var totalPrice = 0
+                    if (responseBody.cart != null) {
+                        for (i in 0 until responseBody.cart.size) {
+                            val itemAmount = responseBody.cart[i].amount?.toInt() ?: 0
+                            amount += itemAmount
+
+                            val itemTotal =
+                                responseBody.cart[i].amount?.toInt()?.let { amountItem ->
+                                    responseBody.cart[i].item?.price?.toInt()?.let { price ->
+                                        amountItem * price
+                                    }
+                                } ?: 0
+                            totalPrice += itemTotal
+                        }
+                    }
+                    binding.qtyTotal.text = amount.toString()
+                    binding.totalPrice.text = formatToRupiah(totalPrice.toDouble())
                 }
             }
 
@@ -63,7 +83,7 @@ class CartActivity : AppCompatActivity() {
         })
     }
 
-    private fun showLoading(isLoading: Boolean) {
+    fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.progressBar.visibility = View.VISIBLE
         } else {
