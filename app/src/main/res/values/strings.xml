@@ -20,4 +20,7 @@
     <string name="cart">Keranjang</string>
     <string name="add_to_cart">Masukkan Keranjang</string>
     <string name="one">1</string>
+    <string name="total">Total:</string>
+    <string name="items">Items</string>
+    <string name="checkout">Checkout</string>
 </resources>
