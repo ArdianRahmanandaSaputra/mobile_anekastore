@@ -77,9 +77,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="6dp"
             android:layout_toEndOf="@id/total"
-            android:text="@string/one"
             android:textSize="14sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:text="@string/one" />
 
         <TextView
             android:id="@+id/items"
@@ -96,11 +96,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:text="@string/price"
             android:textColor="@color/black"
             android:textSize="14sp"
             android:textStyle="bold"
-            tools:ignore="RelativeOverlap" />
+            tools:ignore="RelativeOverlap"
+            tools:text="@string/price" />
 
     </RelativeLayout>
 
