@@ -20,12 +20,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val userPreferences = UserPreferences(this@MainActivity)
-        val token = userPreferences.getToken()
-        if(token != null){
-            startActivity(Intent(this@MainActivity, HomeActivity::class.java))
-        }
-
         binding.tvRegister.setOnClickListener {
             startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
         }
@@ -46,13 +40,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         val loginBody = LoginBody(pass, email)
-        val client =  ApiConfig.getService().login(loginBody)
+        val client =  ApiConfig.getService(applicationContext).login(loginBody)
         client.enqueue(object: Callback<LoginResponse>{
             override fun onResponse(p0: Call<LoginResponse>, response: Response<LoginResponse>) {
               if(response.isSuccessful){
                   val userPreferences = UserPreferences(this@MainActivity)
                   userPreferences.saveCredentials(email,pass,response.body()?.accessToken!!)
-                  startActivity(Intent(this@MainActivity, HomeActivity::class.java))
+                  val i = Intent(this@MainActivity, HomeActivity::class.java)
+                  i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                  startActivity(i)
               }else{
                   Toast.makeText(this@MainActivity, "Email atau password salah", Toast.LENGTH_SHORT).show()
               }

@@ -2,12 +2,16 @@ package com.example.anekastoremobile.data.remote.retrofit
 
 import com.example.anekastoremobile.data.remote.body.LoginBody
 import com.example.anekastoremobile.data.remote.body.RegisterBody
+import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
 import com.example.anekastoremobile.data.remote.response.LoginResponse
+import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
 import com.example.anekastoremobile.data.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.Path
@@ -26,5 +30,33 @@ interface ApiService {
     fun productView(
         @Path("id") id: Int,
     ): Call<ProductViewResponse>
+
+    @FormUrlEncoded
+    @POST("add-cart")
+    fun addCart(
+        @Field("product_id") productId: Int,
+        @Field("amount") amount: Int,
+    ): Call<MessageResponse>
+
+    @POST("get-cart")
+    fun getCart(): Call<GetCartResponse>
+
+    @FormUrlEncoded
+    @POST("delete-item-cart")
+    fun deleteItemCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
+
+    @FormUrlEncoded
+    @POST("add-item-cart")
+    fun addItemCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
+
+    @FormUrlEncoded
+    @POST("delete-cart")
+    fun deleteCart(
+        @Field("cart_id") cartId: Int,
+    ): Call<MessageResponse>
 
 }

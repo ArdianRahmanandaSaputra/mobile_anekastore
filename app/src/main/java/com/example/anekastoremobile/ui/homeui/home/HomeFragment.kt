@@ -1,25 +1,19 @@
 package com.example.anekastoremobile.ui.homeui.home
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
-import android.text.GetChars
 import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
-import com.example.anekastoremobile.data.remote.response.LoginResponse
 import com.example.anekastoremobile.data.remote.response.Product
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.FragmentHomeBinding
-import com.example.anekastoremobile.ui.HomeActivity
-import com.example.anekastoremobile.ui.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,7 +52,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun getData() {
-        val client = ApiConfig.getService().getProduct()
+        val client = ApiConfig.getService(requireContext()).getProduct()
         client.enqueue(object : Callback<GetProductResponse> {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(
