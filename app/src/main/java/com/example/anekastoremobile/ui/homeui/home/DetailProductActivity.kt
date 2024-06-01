@@ -78,11 +78,12 @@ class DetailProductActivity : AppCompatActivity() {
                             }
                         }
                         binding.valuePacket.text = descriptions.toString()
-                        binding.btnAddtoCart.setOnClickListener { addCart(responseBody.id ?: 0) }
+
                     } else {
                         binding.valuePacket.text = "-"
                     }
                     binding.valueDesc.text = responseBody.description
+                    binding.btnAddtoCart.setOnClickListener { addCart(responseBody.id ?: 0) }
                 }
             }
 
