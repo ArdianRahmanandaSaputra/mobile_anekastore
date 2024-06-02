@@ -23,4 +23,9 @@
     <string name="total">Total:</string>
     <string name="items">Items</string>
     <string name="checkout">Checkout</string>
+    <string name="address_send">Alamat Pengiriman</string>
+    <string name="name_user">Ardian Rahmananda Saputra</string>
+    <string name="phone">(+33)7 35 55 45 43</string>
+    <string name="address">Rectory Cottage, Farleigh Court Road, Warlingham, CR6 9PX </string>
+    <string name="create_order">Buat Pesanan</string>
 </resources>
