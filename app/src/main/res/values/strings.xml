@@ -29,4 +29,7 @@
     <string name="phone">(+33)7 35 55 45 43</string>
     <string name="address">Rectory Cottage, Farleigh Court Road, Warlingham, CR6 9PX </string>
     <string name="create_order">Buat Pesanan</string>
+
+    <string name="edit_profile">Ubah Profile</string>
+    <string name="history_transaction">Riwayat Transaksi</string>
 </resources>
