@@ -49,6 +49,9 @@ data class DetailProfile(
     @SerializedName("province_code")
     val province_code: String? = null,
 
+    @SerializedName("city")
+    val city: String? = null,
+
     @SerializedName("city_code")
     val cityCode: String? = null,
 
@@ -68,7 +71,5 @@ data class DetailProfile(
     val created_date: String? = null,
 
     @SerializedName("updated_at")
-    val updatedDate: String? = null,
-
-    )
-
+    val updatedDate: String? = null
+)
