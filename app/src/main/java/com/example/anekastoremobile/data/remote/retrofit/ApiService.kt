@@ -7,6 +7,7 @@ import com.example.anekastoremobile.data.remote.response.GetProductResponse
 import com.example.anekastoremobile.data.remote.response.LoginResponse
 import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
+import com.example.anekastoremobile.data.remote.response.ProfileResponse
 import com.example.anekastoremobile.data.remote.response.RegisterResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -59,4 +60,6 @@ interface ApiService {
         @Field("cart_id") cartId: Int,
     ): Call<MessageResponse>
 
+    @GET("profile")
+    fun profile():Call<ProfileResponse>
 }
