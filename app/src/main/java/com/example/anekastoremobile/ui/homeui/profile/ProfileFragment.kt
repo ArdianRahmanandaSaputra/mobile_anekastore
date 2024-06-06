@@ -1,17 +1,22 @@
 package com.example.anekastoremobile.ui.homeui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.response.ProfileResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.FragmentProfileBinding
+import com.example.anekastoremobile.ui.MainActivity
+import com.example.anekastoremobile.ui.UserPreferences
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -29,6 +34,8 @@ class ProfileFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var userPreferences: UserPreferences
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +47,45 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        toolbar()
+        userPreferences = UserPreferences(requireContext())
         getData()
+    }
+
+    private fun toolbar() {
+        _binding?.toolbar?.setNavigationIcon(R.drawable.baseline_arrow_back_ios_new_24)
+        _binding?.toolbar?.setNavigationOnClickListener {
+            findNavController().navigate(R.id.navigation_home)
+        }
+        _binding?.toolbar?.inflateMenu(R.menu.menu_profile)
+        _binding?.toolbar?.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.logout -> {
+                    val builder = AlertDialog.Builder(requireContext())
+                        .setCancelable(true)
+                        .setTitle("Keluar Akun!")
+                        .setMessage("Apakah Anda yakin ingin keluar?")
+                        .setNegativeButton("Batal", null)
+                        .setPositiveButton("Ya") { dialog, _ ->
+                            userPreferences.clearCredential()
+                            dialog.dismiss()
+                            val i = Intent(requireActivity(), MainActivity::class.java)
+                            i.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(i)
+                            requireActivity().finish()
+                        }
+                    val dialog = builder.create()
+                    dialog.show()
+                    true
+                }
+
+                else -> {
+                    @Suppress("DEPRECATION")
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
     }
 
     private fun getData() {
