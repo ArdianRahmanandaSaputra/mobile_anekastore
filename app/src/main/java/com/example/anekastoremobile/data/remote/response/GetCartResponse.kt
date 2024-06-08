@@ -1,13 +1,17 @@
 package com.example.anekastoremobile.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class GetCartResponse(
 
     @field:SerializedName("cart")
-    val cart : MutableList<Cart>? = null,
-)
+    val cart: MutableList<Cart>? = null,
+) : Parcelable
 
+@Parcelize
 data class Cart(
 
     @SerializedName("id")
@@ -33,8 +37,9 @@ data class Cart(
 
     @SerializedName("product")
     val product: Product? = null,
-)
+) : Parcelable
 
+@Parcelize
 data class Item(
 
     @SerializedName("id")
@@ -66,4 +71,4 @@ data class Item(
 
     @SerializedName("updated_at")
     val updatedAt: String? = null,
-)
+) : Parcelable

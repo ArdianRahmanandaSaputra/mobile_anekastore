@@ -1,5 +1,6 @@
 package com.example.anekastoremobile.ui.homeui.cart
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -12,6 +13,7 @@ import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.ActivityCartBinding
 import com.example.anekastoremobile.formatToRupiah
+import com.example.anekastoremobile.ui.homeui.checkout.CheckoutActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,6 +75,15 @@ class CartActivity : AppCompatActivity() {
                     }
                     binding.qtyTotal.text = amount.toString()
                     binding.totalPrice.text = formatToRupiah(totalPrice.toDouble())
+
+                    binding.btnCheckout.setOnClickListener {
+                        val i = Intent(this@CartActivity, CheckoutActivity::class.java)
+                        i.putParcelableArrayListExtra(
+                            "checkout",
+                            ArrayList(responseBody.cart ?: ArrayList())
+                        )
+                        startActivity(i)
+                    }
                 }
             }
 
