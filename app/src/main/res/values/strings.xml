@@ -28,6 +28,10 @@
     <string name="name_user">Ardian Rahmananda Saputra</string>
     <string name="phone">(+33)7 35 55 45 43</string>
     <string name="address">Rectory Cottage, Farleigh Court Road, Warlingham, CR6 9PX </string>
+    <string name="method_delivery">Metode Pengiriman</string>
+    <string name="choose_delivery">Pilih Pengiriman</string>
+    <string name="choose_courier">Pilih Kurir</string>
+    <string name="choose_service">Pilih Service</string>
     <string name="create_order">Buat Pesanan</string>
 
     <string name="edit_profile">Ubah Profile</string>
