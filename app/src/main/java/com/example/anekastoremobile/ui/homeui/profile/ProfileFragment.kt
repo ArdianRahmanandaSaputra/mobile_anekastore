@@ -10,9 +10,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.response.ProfileResponse
+import com.example.anekastoremobile.data.remote.response.TransactionHistory
 import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.FragmentProfileBinding
 import com.example.anekastoremobile.ui.MainActivity
@@ -35,6 +37,7 @@ class ProfileFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var userPreferences: UserPreferences
+    private lateinit var adapter: ProfileAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +52,12 @@ class ProfileFragment : Fragment() {
 
         toolbar()
         userPreferences = UserPreferences(requireContext())
+
+        _binding?.rvProfile?.layoutManager = LinearLayoutManager(requireContext())
+        _binding?.rvProfile?.setHasFixedSize(true)
+
         getData()
+        getTransactionHistory()
     }
 
     private fun toolbar() {
@@ -129,6 +137,27 @@ class ProfileFragment : Fragment() {
                 append(" ")
                 append(data.detail?.postalCode)
             }
+    }
+
+    private fun getTransactionHistory() {
+        val client = ApiConfig.getService(requireContext()).transactionHistory()
+        client.enqueue(object : Callback<TransactionHistory> {
+            override fun onResponse(
+                p0: Call<TransactionHistory>,
+                p1: Response<TransactionHistory>
+            ) {
+                val responseBody = p1.body()
+                if (p1.isSuccessful && responseBody != null) {
+                    val filter = responseBody.order.filter { it.statusPembayaran == "SUCCESS" }
+                    adapter = ProfileAdapter(requireContext(), filter)
+                    _binding?.rvProfile?.adapter = adapter
+                }
+            }
+
+            override fun onFailure(p0: Call<TransactionHistory>, p1: Throwable) {
+                Log.e("ProfileFragment", p1.message.toString())
+            }
+        })
     }
 
     fun showLoading(isLoading: Boolean) {
