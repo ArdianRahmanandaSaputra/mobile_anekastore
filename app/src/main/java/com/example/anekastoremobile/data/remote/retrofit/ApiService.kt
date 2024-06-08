@@ -3,8 +3,11 @@ package com.example.anekastoremobile.data.remote.retrofit
 import com.example.anekastoremobile.data.remote.body.LoginBody
 import com.example.anekastoremobile.data.remote.body.RegisterBody
 import com.example.anekastoremobile.data.remote.response.GetCartResponse
+import com.example.anekastoremobile.data.remote.response.GetCostResponse
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
 import com.example.anekastoremobile.data.remote.response.LoginResponse
+import com.example.anekastoremobile.data.remote.response.MakeOrderRequest
+import com.example.anekastoremobile.data.remote.response.MakeOrderResponse
 import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
 import com.example.anekastoremobile.data.remote.response.ProfileResponse
@@ -66,4 +69,17 @@ interface ApiService {
 
     @GET("orders-by-customers")
     fun transactionHistory(): Call<TransactionHistory>
+
+    @FormUrlEncoded
+    @POST("get-cost")
+    fun getCost(
+        @Field("courier") courier: String,
+        @Field("dest") dest: String,
+        @Field("weight") weight: String,
+    ): Call<GetCostResponse>
+
+    @POST("make-order")
+    fun makeOrder(
+        @Body request: MakeOrderRequest
+    ): Call<MakeOrderResponse>
 }
