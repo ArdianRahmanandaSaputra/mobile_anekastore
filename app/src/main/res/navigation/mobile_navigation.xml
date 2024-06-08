@@ -11,15 +11,21 @@
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
+    <!--<fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.example.anekastoremobile.ui.homeui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" />-->
 
-    <fragment
+    <!--<fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.anekastoremobile.ui.homeui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" />-->
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.anekastoremobile.ui.homeui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

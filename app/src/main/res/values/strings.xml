@@ -4,6 +4,7 @@
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_profile">Profile</string>
 
     <string name="aneka_store">Aneka Store</string>
     <string name="name_product">Indomie Goreng</string>
@@ -23,4 +24,18 @@
     <string name="total">Total:</string>
     <string name="items">Items</string>
     <string name="checkout">Checkout</string>
+    <string name="address_send">Alamat Pengiriman</string>
+    <string name="name_user">Ardian Rahmananda Saputra</string>
+    <string name="phone">(+33)7 35 55 45 43</string>
+    <string name="address">Rectory Cottage, Farleigh Court Road, Warlingham, CR6 9PX </string>
+    <string name="create_order">Buat Pesanan</string>
+
+    <string name="edit_profile">Ubah Profile</string>
+    <string name="history_transaction">Riwayat Transaksi</string>
+    <string name="logout">Keluar</string>
+
+    <string name="date_buy">24:60:60 – 31 Desember 2024</string>
+    <string name="success">SUCCESS</string>
+    <string name="x">x</string>
+    <string name="equal_to">=</string>
 </resources>
