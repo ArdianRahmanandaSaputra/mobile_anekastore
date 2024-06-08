@@ -33,4 +33,9 @@
     <string name="edit_profile">Ubah Profile</string>
     <string name="history_transaction">Riwayat Transaksi</string>
     <string name="logout">Keluar</string>
+
+    <string name="date_buy">24:60:60 – 31 Desember 2024</string>
+    <string name="success">SUCCESS</string>
+    <string name="x">x</string>
+    <string name="equal_to">=</string>
 </resources>
