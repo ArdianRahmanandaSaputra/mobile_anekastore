@@ -6,6 +6,7 @@ import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.response.GetCostResponse
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
 import com.example.anekastoremobile.data.remote.response.LoginResponse
+import com.example.anekastoremobile.data.remote.response.MakeOrderRequest
 import com.example.anekastoremobile.data.remote.response.MakeOrderResponse
 import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
@@ -77,14 +78,8 @@ interface ApiService {
         @Field("weight") weight: String,
     ): Call<GetCostResponse>
 
-    @FormUrlEncoded
     @POST("make-order")
     fun makeOrder(
-        @Field("user_id") user_id: Int,
-        @Field("deliveryoption") deliveryOption: String,
-        @Field("service") service: String?,
-        @Field("courier") courier: String?,
-        @Field("total") total: Int,
-        @Field("order") order: List<Int>
+        @Body request: MakeOrderRequest
     ): Call<MakeOrderResponse>
 }
