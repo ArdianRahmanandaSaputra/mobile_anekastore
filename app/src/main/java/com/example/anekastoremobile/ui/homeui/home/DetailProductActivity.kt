@@ -19,7 +19,6 @@ import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.ActivityDetailProductBinding
 import com.example.anekastoremobile.formatToRupiah
 import com.example.anekastoremobile.ui.homeui.cart.CartActivity
-import com.example.anekastoremobile.ui.homeui.checkout.CheckoutAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
