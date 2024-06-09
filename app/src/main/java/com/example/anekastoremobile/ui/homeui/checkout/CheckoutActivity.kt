@@ -54,6 +54,9 @@ class CheckoutActivity : AppCompatActivity() {
             actionBar.setDisplayHomeAsUpEnabled(true)
         }
 
+        totalAmount = 0
+        totalWeight = 0
+        totalPrice = 0
         val i = intent
         @Suppress("DEPRECATION")
         if (i != null) dataCheckout = i.getParcelableArrayListExtra("checkout") ?: ArrayList()
@@ -255,7 +258,7 @@ class CheckoutActivity : AppCompatActivity() {
         val spinnerDeliveryOption: Spinner = binding.spinnerServiceOption
 
         val dataService = mutableListOf("Pilih Service")
-        dataService.addAll(dataList.map { "${it.service} | ${it.cost[0].etd} | ${it.cost[0].value}" })
+        dataService.addAll(dataList.map { "${it.service} | ${it.cost[0].etd} Hari | ${it.cost[0].value}" })
 
         val adapter = ArrayAdapter(
             this,
@@ -274,8 +277,8 @@ class CheckoutActivity : AppCompatActivity() {
                 id: Long
             ) {
                 val selectedOption = parent.getItemAtPosition(position).toString()
-                val selected = dataList[position].cost[0].value
                 if (position != 0) {
+                    val selected = dataList[position - 1].cost[0].value
                     handleServiceOption(selectedOption, selected)
                 }
             }
@@ -299,6 +302,11 @@ class CheckoutActivity : AppCompatActivity() {
     }
 
     private fun makeOrder(fixTotal: Int) {
+        println(reqDeliveryOption)
+        println(reqService)
+        println(reqCourier)
+        println(fixTotal)
+        println(orderList)
         val makeOrderRequest = MakeOrderRequest(
             user_id = 2,
             deliveryoption = reqDeliveryOption.toString(),
@@ -347,9 +355,6 @@ class CheckoutActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
-            totalAmount = 0
-            totalWeight = 0
-            totalPrice = 0
             finish()
             return true
         }
