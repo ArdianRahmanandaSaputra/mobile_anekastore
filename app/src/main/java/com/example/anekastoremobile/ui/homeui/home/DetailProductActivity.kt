@@ -69,10 +69,27 @@ class DetailProductActivity : AppCompatActivity() {
                     binding.tvNameProduct.text = responseBody.name
                     binding.valueNoRegister.text = responseBody.id.toString()
                     binding.valueCategory.text = responseBody.categoryName
+//                    if ((responseBody.discounts?.size ?: 0) > 0) {
+//                        val descriptions = StringBuilder()
+//                        for (i in 0 until (responseBody.discounts?.size ?: 0)) {
+//                            descriptions.append(responseBody.discounts?.get(i)?.description ?: "")
+//                            if (i != (responseBody.discounts?.size ?: 0) - 1) {
+//                                descriptions.append("\n")
+//                            }
+//                        }
+
                     if ((responseBody.discounts?.size ?: 0) > 0) {
                         val descriptions = StringBuilder()
                         for (i in 0 until (responseBody.discounts?.size ?: 0)) {
-                            descriptions.append(responseBody.discounts?.get(i)?.description ?: "")
+                            val discount = responseBody.discounts?.get(i)
+                            val constraint = discount?.constraint?.toIntOrNull() ?: 0
+                            val discountAmount = discount?.discounts?.toIntOrNull() ?: 0
+                            val price = responseBody.price?.toIntOrNull() ?: 0
+
+                            val discountedPrice = (price * constraint - discountAmount * constraint).toDouble()
+                            val formattedDiscountedPrice = formatToRupiah(discountedPrice)
+
+                            descriptions.append("Beli ${constraint} Dus, Dengan Harga $formattedDiscountedPrice")
                             if (i != (responseBody.discounts?.size ?: 0) - 1) {
                                 descriptions.append("\n")
                             }
