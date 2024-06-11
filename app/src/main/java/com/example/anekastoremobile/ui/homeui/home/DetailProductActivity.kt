@@ -69,7 +69,11 @@ class DetailProductActivity : AppCompatActivity() {
                     binding.tvNameProduct.text = responseBody.name
                     binding.valueNoRegister.text = responseBody.id.toString()
                     binding.valueCategory.text = responseBody.categoryName
+<<<<<<< HEAD
 //
+=======
+
+>>>>>>> 126b0d4b8917ffbf240b723ab018107599570284
                     if ((responseBody.discounts?.size ?: 0) > 0) {
                         val descriptions = StringBuilder()
                         for (i in 0 until (responseBody.discounts?.size ?: 0)) {
