@@ -19,6 +19,7 @@ import com.example.anekastoremobile.data.remote.retrofit.ApiConfig
 import com.example.anekastoremobile.databinding.FragmentProfileBinding
 import com.example.anekastoremobile.ui.MainActivity
 import com.example.anekastoremobile.ui.UserPreferences
+import com.example.anekastoremobile.ui.homeui.edit_profile.EditProfileActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -118,7 +119,7 @@ class ProfileFragment : Fragment() {
     private fun viewUI(data: ProfileResponse) {
         _binding?.profileImage?.let {
             Glide.with(requireContext())
-                .load(data.detail?.photo)
+                .load("https://storeaneka.my.id/uploads/user/${data.detail?.photo}")
                 .error(R.drawable.baseline_person_24)
                 .into(it)
         }
@@ -137,6 +138,12 @@ class ProfileFragment : Fragment() {
                 append(" ")
                 append(data.detail?.postalCode)
             }
+
+        _binding?.btnEditProfile?.setOnClickListener {
+            val i = Intent(requireActivity(), EditProfileActivity::class.java)
+            i.putExtra("edit_profile", data)
+            startActivity(i)
+        }
     }
 
     private fun getTransactionHistory() {
