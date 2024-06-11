@@ -1,7 +1,13 @@
+@file:Suppress("DEPRECATED_ANNOTATION")
+
 package com.example.anekastoremobile.data.remote.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import kotlinx.android.parcel.RawValue
 
+@Parcelize
 data class ProfileResponse(
 
     @SerializedName("user")
@@ -9,8 +15,9 @@ data class ProfileResponse(
 
     @SerializedName("detail")
     val detail: DetailProfile? = null,
-)
+) : Parcelable
 
+@Parcelize
 data class UserProfile(
 
     @SerializedName("id")
@@ -23,15 +30,16 @@ data class UserProfile(
     val email: String? = null,
 
     @SerializedName("email_verified_at")
-    val emailVerifiedAt: Any,
+    val emailVerifiedAt: @RawValue Any? = null,
 
     @SerializedName("created_at")
     val createdAt: String? = null,
 
     @SerializedName("update_at")
     val updateAt: String? = null,
-)
+) : Parcelable
 
+@Parcelize
 data class DetailProfile(
 
     @SerializedName("id")
@@ -72,4 +80,4 @@ data class DetailProfile(
 
     @SerializedName("updated_at")
     val updatedDate: String? = null
-)
+) : Parcelable
