@@ -50,12 +50,33 @@
             android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@id/tv_status" />
 
+        <TextView
+            android:id="@+id/tv_id_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="ID Order: 515199f4-c5e7-4ee3-8359-07991980bf7e" />
+
+        <ImageView
+            android:id="@+id/copy_clipboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/copy"
+            app:layout_constraintBottom_toTopOf="@id/recyclerViewOrderDetails"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_id_order"
+            app:srcCompat="@drawable/baseline_content_copy_24" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewOrderDetails"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:nestedScrollingEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/divider" />
+            app:layout_constraintTop_toBottomOf="@id/tv_id_order" />
 
         <com.google.android.material.divider.MaterialDivider
             android:id="@+id/divider2"
