@@ -308,7 +308,6 @@ class CheckoutActivity : AppCompatActivity() {
         println(fixTotal)
         println(orderList)
         val makeOrderRequest = MakeOrderRequest(
-            user_id = 2,
             deliveryoption = reqDeliveryOption.toString(),
             service = reqService.toString(),
             courier = reqCourier.toString(),

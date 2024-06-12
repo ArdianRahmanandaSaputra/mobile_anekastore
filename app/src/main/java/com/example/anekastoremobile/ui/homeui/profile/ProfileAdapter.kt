@@ -1,8 +1,12 @@
 package com.example.anekastoremobile.ui.homeui.profile
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
+import android.content.Context.CLIPBOARD_SERVICE
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.anekastoremobile.convertDateTime
@@ -25,6 +29,21 @@ class ProfileAdapter(val context: Context, private val dataList: List<Order>) :
                 val orderDetailAdapter = OrderDetailAdapter(context, data.orderDetails)
                 _binding.recyclerViewOrderDetails.adapter = orderDetailAdapter
                 _binding.recyclerViewOrderDetails.layoutManager = LinearLayoutManager(context)
+            }
+
+            _binding.tvIdOrder.text = buildString {
+                append("ID Order:\n")
+                append(data.id)
+            }
+            _binding.copyClipboard.setOnClickListener {
+                val clipboardManager =
+                    context.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+                val clipData = ClipData.newPlainText(
+                    "aneka_store",
+                    data.id
+                )
+                clipboardManager.setPrimaryClip(clipData)
+                Toast.makeText(context, "ID Order Disalin", Toast.LENGTH_SHORT).show()
             }
         }
     }

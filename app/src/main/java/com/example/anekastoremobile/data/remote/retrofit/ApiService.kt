@@ -2,15 +2,18 @@ package com.example.anekastoremobile.data.remote.retrofit
 
 import com.example.anekastoremobile.data.remote.body.LoginBody
 import com.example.anekastoremobile.data.remote.body.RegisterBody
+import com.example.anekastoremobile.data.remote.response.CityResponse
 import com.example.anekastoremobile.data.remote.response.GetCartResponse
 import com.example.anekastoremobile.data.remote.response.GetCostResponse
 import com.example.anekastoremobile.data.remote.response.GetProductResponse
+import com.example.anekastoremobile.data.remote.response.GetRelatedProduct
 import com.example.anekastoremobile.data.remote.response.LoginResponse
 import com.example.anekastoremobile.data.remote.response.MakeOrderRequest
 import com.example.anekastoremobile.data.remote.response.MakeOrderResponse
 import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
 import com.example.anekastoremobile.data.remote.response.ProfileResponse
+import com.example.anekastoremobile.data.remote.response.ProvinceResponse
 import com.example.anekastoremobile.data.remote.response.RegisterResponse
 import com.example.anekastoremobile.data.remote.response.TransactionHistory
 import retrofit2.Call
@@ -82,4 +85,32 @@ interface ApiService {
     fun makeOrder(
         @Body request: MakeOrderRequest
     ): Call<MakeOrderResponse>
+
+    @GET("get-province")
+    fun getProvince(): Call<ProvinceResponse>
+
+    @GET("get-city-by-province/{id}")
+    fun getCityByProvince(
+        @Path("id") idProvince: Int,
+    ): Call<CityResponse>
+
+    @FormUrlEncoded
+    @POST("update-profile")
+    fun updateProfile(
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("province") province: String,
+        @Field("province_code") province_code: String,
+        @Field("city") city: String,
+        @Field("city_code") cityCode: String,
+        @Field("phone") phone: String,
+        @Field("postal_code") postal_code: String,
+        @Field("detail_address") detailAddress: String,
+        @Field("gender") gender: String,
+    ): Call<MessageResponse>
+
+    @GET("getrelatedproduct/{id}")
+    fun getRelatedProduct(
+        @Path("id") id: String,
+    ): Call<GetRelatedProduct>
 }

@@ -20,6 +20,7 @@
     <string name="value_desc">Pembelian Minimum sebanyak 1 dus, 1 dus berisikan 40 pcs.</string>
     <string name="cart">Keranjang</string>
     <string name="add_to_cart">Masukkan Keranjang</string>
+    <string name="same_product">---- Produk Yang Sama ----</string>
     <string name="one">1</string>
     <string name="total">Total:</string>
     <string name="items">Items</string>
@@ -37,6 +38,16 @@
     <string name="edit_profile">Ubah Profile</string>
     <string name="history_transaction">Riwayat Transaksi</string>
     <string name="logout">Keluar</string>
+    <string name="copy">Copy</string>
+    <string name="nama">Nama</string>
+    <string name="email">Email</string>
+    <string name="no_hp">Ho HP</string>
+    <string name="choose_gender">Pilih Gender</string>
+    <string name="choose_province">Pilih Provinsi</string>
+    <string name="choose_city">Pilih Kota/Kab</string>
+    <string name="postal_zip">Kode Pos</string>
+    <string name="detail_address">Alamat Detail</string>
+    <string name="save">Simpan</string>
 
     <string name="date_buy">24:60:60 – 31 Desember 2024</string>
     <string name="success">SUCCESS</string>
