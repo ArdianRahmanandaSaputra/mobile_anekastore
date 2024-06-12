@@ -42,7 +42,7 @@
     <string name="email">Email</string>
     <string name="no_hp">Ho HP</string>
     <string name="choose_gender">Pilih Gender</string>
-    <string name="choose_province">Pilih Province</string>
+    <string name="choose_province">Pilih Provinsi</string>
     <string name="choose_city">Pilih Kota/Kab</string>
     <string name="postal_zip">Kode Pos</string>
     <string name="detail_address">Alamat Detail</string>
