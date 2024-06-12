@@ -10,8 +10,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
 import com.bumptech.glide.Glide
 import com.example.anekastoremobile.R
+import com.example.anekastoremobile.data.remote.response.GetRelatedProduct
 import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.Product
 import com.example.anekastoremobile.data.remote.response.ProductViewResponse
@@ -48,6 +50,7 @@ class DetailProductActivity : AppCompatActivity() {
         if (i != null) product = i.getParcelableExtra("detail_product") ?: Product()
 
         getData()
+        getRelatedProduct(product.categoryId)
     }
 
     private fun getData() {
@@ -78,10 +81,11 @@ class DetailProductActivity : AppCompatActivity() {
                             val discountAmount = discount?.discounts?.toIntOrNull() ?: 0
                             val price = responseBody.price?.toIntOrNull() ?: 0
 
-                            val discountedPrice = (price * constraint - discountAmount * constraint).toDouble()
+                            val discountedPrice =
+                                (price * constraint - discountAmount * constraint).toDouble()
                             val formattedDiscountedPrice = formatToRupiah(discountedPrice)
 
-                            descriptions.append("Beli ${constraint} Dus, Dengan Harga $formattedDiscountedPrice")
+                            descriptions.append("Beli $constraint Dus, Dengan Harga $formattedDiscountedPrice")
                             if (i != (responseBody.discounts?.size ?: 0) - 1) {
                                 descriptions.append("\n")
                             }
@@ -98,7 +102,7 @@ class DetailProductActivity : AppCompatActivity() {
 
             override fun onFailure(p0: Call<ProductViewResponse>, p1: Throwable) {
                 showLoading(false)
-                Log.e("DetailProductActivity", p1.message.toString())
+                Log.e(TAG, p1.message.toString())
             }
         })
     }
@@ -124,13 +128,34 @@ class DetailProductActivity : AppCompatActivity() {
 
             override fun onFailure(p0: Call<MessageResponse>, p1: Throwable) {
                 showLoading(false)
-                Log.e("DetailProductActivity", p1.message.toString())
+                Log.e(TAG, p1.message.toString())
                 Toast.makeText(
                     applicationContext,
                     "Gagal terhubung ke Server. Coba lagi!",
                     Toast.LENGTH_SHORT
                 ).show()
             }
+        })
+    }
+
+    private fun getRelatedProduct(idCategory: String?) {
+        val client = ApiConfig.getService(applicationContext).getRelatedProduct(idCategory ?: "0")
+        client.enqueue(object : Callback<GetRelatedProduct> {
+            override fun onResponse(p0: Call<GetRelatedProduct>, p1: Response<GetRelatedProduct>) {
+                val responseBody = p1.body()
+                if (p1.isSuccessful && responseBody != null) {
+                    binding.rvProduct.layoutManager =
+                        GridLayoutManager(this@DetailProductActivity, 2)
+                    val adapter =
+                        HomeAdapter(this@DetailProductActivity, responseBody.relatedProduct)
+                    binding.rvProduct.adapter = adapter
+                }
+            }
+
+            override fun onFailure(p0: Call<GetRelatedProduct>, p1: Throwable) {
+                Log.e(TAG, p1.message.toString())
+            }
+
         })
     }
 
@@ -159,5 +184,9 @@ class DetailProductActivity : AppCompatActivity() {
             return true
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    companion object {
+        private val TAG = DetailProductActivity::class.java.simpleName
     }
 }
