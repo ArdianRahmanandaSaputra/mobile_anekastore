@@ -50,7 +50,7 @@ class DetailProductActivity : AppCompatActivity() {
         if (i != null) product = i.getParcelableExtra("detail_product") ?: Product()
 
         getData()
-        getRelatedProduct(product.categoryId)
+        getRelatedProduct(product.id.toString())
     }
 
     private fun getData() {
