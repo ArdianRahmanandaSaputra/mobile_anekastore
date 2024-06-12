@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.anekastoremobile.R
 import com.example.anekastoremobile.data.remote.response.City
 import com.example.anekastoremobile.data.remote.response.CityResponse
+import com.example.anekastoremobile.data.remote.response.MessageResponse
 import com.example.anekastoremobile.data.remote.response.ProfileResponse
 import com.example.anekastoremobile.data.remote.response.Province
 import com.example.anekastoremobile.data.remote.response.ProvinceResponse
@@ -45,11 +46,9 @@ class EditProfileActivity : AppCompatActivity() {
         val i = intent
         @Suppress("DEPRECATION")
         if (i != null) data = i.getParcelableExtra("edit_profile") ?: ProfileResponse()
-        println(data)
 
         setupUI()
-        getProvinces()
-        getCityByProvince(data.detail?.province_code?.toInt() ?: 0)
+        binding.btnSave.setOnClickListener { save() }
     }
 
     private fun setupUI() {
@@ -61,6 +60,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.editEmail.setText(data.user?.email)
         binding.editNoHp.setText(data.detail?.phone)
         spinnerGender()
+        getProvinces()
         binding.editPostalZip.setText(data.detail?.postalCode)
         binding.editDetailAddress.setText(data.detail?.detailAddress)
 
@@ -95,7 +95,6 @@ class EditProfileActivity : AppCompatActivity() {
             ) {
                 val selectedOption = parent.getItemAtPosition(position).toString()
                 dataGender = selectedOption.lowercase(Locale.ROOT)
-                println(selectedOption)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {
@@ -256,8 +255,8 @@ class EditProfileActivity : AppCompatActivity() {
             cityCode != null &&
             city != null
         ) {
+            showLoading(true)
             val client = ApiConfig.getService(applicationContext).updateProfile(
-                2,
                 name,
                 email,
                 province,
@@ -269,6 +268,38 @@ class EditProfileActivity : AppCompatActivity() {
                 detailAddress,
                 gender
             )
+            client.enqueue(object : Callback<MessageResponse> {
+                override fun onResponse(p0: Call<MessageResponse>, p1: Response<MessageResponse>) {
+                    showLoading(false)
+                    val responseBody = p1.body()
+                    if (p1.isSuccessful && responseBody != null) {
+                        Toast.makeText(
+                            this@EditProfileActivity,
+                            responseBody.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        @Suppress("DEPRECATION")
+                        onBackPressed()
+                    }
+                }
+
+                override fun onFailure(p0: Call<MessageResponse>, p1: Throwable) {
+                    showLoading(false)
+                    Log.e(TAG, p1.message.toString())
+                    Toast.makeText(
+                        this@EditProfileActivity,
+                        "Gagal terhubung ke Server, coba lagi!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+            })
+        } else {
+            Toast.makeText(
+                this@EditProfileActivity,
+                "Data tidak boleh ada yang kosong!",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
