@@ -97,7 +97,6 @@ interface ApiService {
     @FormUrlEncoded
     @POST("update-profile")
     fun updateProfile(
-        @Field("id") id: Int,
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("province") province: String,
